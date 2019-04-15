@@ -1,0 +1,3 @@
+#VoiceChangerDemo
+这个项目是https://github.com/xiaobinlzy/VoiceChanger_Android
+的AndroidStudio的版本，原项目是eclipse版本，感谢xiaobinlzy
