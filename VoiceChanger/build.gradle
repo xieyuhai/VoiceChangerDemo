@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    packagingOptions { //打包时的相关配置
+        pickFirst 'lib/armeabi-v7a/libsoundtouch.so'
+        pickFirst 'lib/armeabi-v7a/libspeex.so'
+    }
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 28
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+        //设置支持的库CPU架构
+        ndk {
+//            cmake {
+//                arguments "-DANDROID_STL=c++_shared"
+//            }
+            moduleName "OceanVoicer"
+            abiFilters("armeabi-v7a"/*, "armeabi"*/)//,'armeabi','arm64-v8a',
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+dependencies {
+    api 'com.android.support:support-v4:19.1.0'
+}
